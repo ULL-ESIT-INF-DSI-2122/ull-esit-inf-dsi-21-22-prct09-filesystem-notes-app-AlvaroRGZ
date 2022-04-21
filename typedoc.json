@@ -1,0 +1,6 @@
+{
+  "entryPoints": [
+    "src/clase-18-04.ts"
+  ],
+  "out": "typedocuments"
+}
