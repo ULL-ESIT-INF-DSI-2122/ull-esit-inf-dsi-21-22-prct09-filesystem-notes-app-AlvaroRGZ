@@ -1,64 +1,12 @@
 import * as fs from 'fs';
 import chalk from 'chalk';
+import {print} from './printer';
 
 /**
  * Variable que contiene la ruta al directorio donde se almacenan
  * los directorios de cada usuario, cada uno con sus notas dentro.
  */
 const userDir: string = 'userNotes/';
-
-/**
- * Funcion que imprime una cadena de un color determinado
- * @param s cadena a imprimir por pantalla
- * @param c color deseado para imprimir s
- */
-export function print(s: string, c: string) {
-  switch (c) {
-    case 'blue':
-      console.log(chalk.blueBright(s));
-      break;
-    case 'red':
-      console.log(chalk.redBright(s));
-      break;
-    case 'green':
-      console.log(chalk.greenBright(s));
-      break;
-    case 'white':
-      console.log(chalk.whiteBright(s));
-      break;
-    case 'yellow':
-      console.log(chalk.yellowBright(s));
-      break;
-    default:
-      console.log(chalk.whiteBright(s));
-      break;
-  }
-}
-
-/**
- * Funcion que imprime una cadena con un backGround determinado
- * @param s cadena a imprimir por pantalla
- * @param c color deseado para imprimir s
- */
-export function bgprint(s: string, c: string) {
-  switch (c) {
-    case 'blue':
-      console.log(chalk.bgBlueBright(s));
-      break;
-    case 'red':
-      console.log(chalk.bgRedBright(s));
-      break;
-    case 'green':
-      console.log(chalk.bgGreenBright(s));
-      break;
-    case 'yellow':
-      console.log(chalk.bgYellowBright(s));
-      break;
-    default:
-      console.log(chalk.bgWhiteBright(s));
-      break;
-  }
-}
 
 /**
  * Crea una nota con los datos indicados.
@@ -75,13 +23,8 @@ export function createNote(tittle: string, body: string, user: string, color: st
     fs.mkdirSync(userDir + user, {recursive: true});
   }
   if (!fs.existsSync(userDir + user + '/' + tittle)) {
-    fs.writeFile(userDir + user + '/' + tittle, JSON.stringify({tittle, body, color}, null, ' '), (err) => {
-      if (err) {
-        console.log(chalk.redBright(`Error creating ${tittle}`));
-      } else {
-        exitStatus = true;
-      }
-    });
+    fs.writeFileSync(userDir + user + '/' + tittle, JSON.stringify({tittle, body, color}, null, ' '));
+    exitStatus = true;
   } else {
     console.log(chalk.redBright(`Error. ${tittle} already exists`));
   }
@@ -103,13 +46,8 @@ export function modifyNote(tittle: string, newtittle: string, body: string, user
   if (fs.existsSync(userDir + user + '/' + tittle)) {
     deleteNote(tittle, user);
     tittle = newtittle; // Actualizamos el nombre de la nota
-    fs.writeFile(userDir + user + '/' + newtittle, JSON.stringify({tittle, body, color}, null, ' '), (err) => {
-      if (err) {
-        console.log(chalk.redBright(`Error modifying ${tittle}`));
-      } else {
-        exitStatus = true;
-      }
-    });
+    fs.writeFileSync(userDir + user + '/' + newtittle, JSON.stringify({tittle, body, color}, null, ' '));
+    exitStatus = true;
   } else {
     console.log(chalk.redBright(`Error. ${tittle} not exists`));
   }
@@ -127,13 +65,8 @@ export function deleteNote(tittle: string, user: string): boolean {
   let exitStatus: boolean = false;
   if (fs.existsSync(userDir + user)) {
     if (fs.existsSync(userDir + user + '/' + tittle)) {
-      fs.rm(userDir + user + '/' + tittle, (err)=> {
-        if (err) {
-          console.log(chalk.redBright(`Error deleting ${tittle}`));
-        } else {
-          exitStatus = true;
-        }
-      });
+      fs.rmSync(userDir + user + '/' + tittle);
+      exitStatus = true;
     } else {
       console.log(chalk.redBright(`Error. ${tittle} doesnt exist.`));
     }

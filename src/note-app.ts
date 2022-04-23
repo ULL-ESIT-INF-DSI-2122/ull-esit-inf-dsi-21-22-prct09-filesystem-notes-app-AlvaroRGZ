@@ -38,8 +38,9 @@ yargs.command({
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string' &&
         typeof argv.body === 'string' && typeof argv.color === 'string') {
-      fu.createNote(argv.title, argv.body, argv.user, argv.color);
-      console.log(chalk.greenBright(`${argv.title} created succesfully`));
+      if (fu.createNote(argv.title, argv.body, argv.user, argv.color)) {
+        console.log(chalk.greenBright(`${argv.title} created succesfully`));
+      }
     }
   },
 });
@@ -87,8 +88,9 @@ yargs.command({
     if (typeof argv.title === 'string' && typeof argv.user === 'string' &&
         typeof argv.body === 'string' && typeof argv.color === 'string' &&
         typeof argv.newtitle === 'string') {
-      fu.modifyNote(argv.title, argv.newtitle, argv.body, argv.user, argv.color);
-      console.log(chalk.greenBright(`${argv.title} modified succesfully. Now: ${argv.newtitle}`));
+      if (fu.modifyNote(argv.title, argv.newtitle, argv.body, argv.user, argv.color)) {
+        console.log(chalk.greenBright(`${argv.title} modified succesfully. Now: ${argv.newtitle}`));
+      }
     }
   },
 });
@@ -144,8 +146,9 @@ yargs.command({
   },
   handler(argv) {
     if (typeof argv.title === 'string' && typeof argv.user === 'string') {
-      fu.deleteNote(argv.title, argv.user);
-      console.log(chalk.yellowBright(`${argv.title} deleted suscessfully`));
+      if (fu.deleteNote(argv.title, argv.user)) {
+        console.log(chalk.yellowBright(`${argv.title} deleted suscessfully`));
+      }
     }
   },
 });
