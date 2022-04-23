@@ -55,8 +55,6 @@ export function createNote(tittle: string, body: string, user: string, color: st
       if (err) {
         console.log(chalk.redBright(`Error creating ${tittle}`));
       } else {
-        console.log(chalk.greenBright(`${tittle} created succesfully`));
-        console.log();
       }
     });
   } else {
@@ -72,8 +70,6 @@ export function modifyNote(tittle: string, newtittle: string, body: string, user
       if (err) {
         console.log(chalk.redBright(`Error modifying ${tittle}`));
       } else {
-        console.log(chalk.greenBright(`${tittle} created succesfully`));
-        console.log();
       }
     });
   } else {

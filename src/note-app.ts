@@ -31,6 +31,7 @@ yargs.command({
     if (typeof argv.title === 'string' && typeof argv.user === 'string' &&
         typeof argv.body === 'string' && typeof argv.color === 'string') {
       fu.createNote(argv.title, argv.body, argv.user, argv.color);
+      console.log(chalk.greenBright(`${argv.title} created succesfully`));
     }
   },
 });
@@ -70,6 +71,7 @@ yargs.command({
         typeof argv.body === 'string' && typeof argv.color === 'string' &&
         typeof argv.newtitle === 'string') {
       fu.modifyNote(argv.title, argv.newtitle, argv.body, argv.user, argv.color);
+      console.log(chalk.greenBright(`${argv.title} modified succesfully. Now: ${argv.newtitle}`));
     }
   },
 });
