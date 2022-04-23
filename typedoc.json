@@ -1,6 +1,7 @@
 {
   "entryPoints": [
-    "src/clase-18-04.ts"
+    "src/functions.ts",
+    "src/note-app.ts"
   ],
   "out": "typedocuments"
 }

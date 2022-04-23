@@ -1,8 +1,17 @@
 import * as fs from 'fs';
 import chalk from 'chalk';
 
+/**
+ * Variable que contiene la ruta al directorio donde se almacenan
+ * los directorios de cada usuario, cada uno con sus notas dentro.
+ */
 const userDir: string = 'userNotes/';
 
+/**
+ * Funcion que imprime una cadena de un color determinado
+ * @param s cadena a imprimir por pantalla
+ * @param c color deseado para imprimir s
+ */
 export function print(s: string, c: string) {
   switch (c) {
     case 'blue':
@@ -26,6 +35,11 @@ export function print(s: string, c: string) {
   }
 }
 
+/**
+ * Funcion que imprime una cadena con un backGround determinado
+ * @param s cadena a imprimir por pantalla
+ * @param c color deseado para imprimir s
+ */
 export function bgprint(s: string, c: string) {
   switch (c) {
     case 'blue':
@@ -46,6 +60,15 @@ export function bgprint(s: string, c: string) {
   }
 }
 
+/**
+ * Crea una nota con los datos indicados.
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param tittle titulo de la nota
+ * @param body cuerpo de la nota
+ * @param user propietario de la nota
+ * @param color color de la nota
+ */
 export function createNote(tittle: string, body: string, user: string, color: string) {
   if (!fs.existsSync(userDir + user)) {
     fs.mkdirSync(userDir + user, {recursive: true});
@@ -62,6 +85,16 @@ export function createNote(tittle: string, body: string, user: string, color: st
   }
 }
 
+/**
+ * Modifica una nota indicada con los nuevos datos indicados.
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param tittle titulo de la nota a modificar
+ * @param newtittle nuevo titulo de la nota
+ * @param body cuerpo de la nota
+ * @param user propietario de la nota
+ * @param color color de la nota
+ */
 export function modifyNote(tittle: string, newtittle: string, body: string, user: string, color: string) {
   if (fs.existsSync(userDir + user + '/' + tittle)) {
     deleteNote(tittle, user);
@@ -77,6 +110,13 @@ export function modifyNote(tittle: string, newtittle: string, body: string, user
   }
 }
 
+/**
+ * Elimina una nota.
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param tittle titulo de la nota
+ * @param user propietario de la nota
+ */
 export function deleteNote(tittle: string, user: string) {
   if (fs.existsSync(userDir + user)) {
     if (fs.existsSync(userDir + user + '/' + tittle)) {
@@ -93,6 +133,13 @@ export function deleteNote(tittle: string, user: string) {
   }
 }
 
+/**
+ * Lee una nota determinada de un usuario
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param user propietario de la nota
+ * @param title titulo de la nota
+*/
 export function readNote(tittle: string, user: string) {
   if (fs.existsSync(userDir + user)) {
     if (fs.existsSync(userDir + user + '/' + tittle)) {
@@ -113,6 +160,12 @@ export function readNote(tittle: string, user: string) {
   }
 }
 
+/**
+ * Lista las notas de un determinado usuario.
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param user usuario dueño de las notas a listar.
+ */
 export function listNotes(user: string) {
   fs.readdir(userDir + user, (err, files) => {
     if (err) {
@@ -126,6 +179,12 @@ export function listNotes(user: string) {
   });
 }
 
+/**
+ * Lista los titulos de las notas de un determinado usuario.
+ * Si hay algun error en el proceso muestra por pantalla los
+ * detalles del error.
+ * @param user usuario dueño de las notas a listar.
+ */
 export function listNoteTitles(user: string) {
   fs.readdir(userDir + user, (err, files) => {
     if (err) {
