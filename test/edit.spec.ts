@@ -42,7 +42,16 @@ describe('Pruebas Note App', () => {
       });
     });
 
-
-
+    describe('FUNCION: readNote', () => {
+      it('Funciona readNote', () => {
+        expect(fu.readNote('pr1', 'pruebas')).to.be.deep.equal(true);
+      });
+      it('No funciona listNotes con malos argumentos', () => {
+        expect(fu.readNote('nofile', 'pruebas')).to.be.deep.equal(false);
+      });
+      it('No funciona listNotes con fichero con errores', () => {
+        expect(fu.readNote('pr6', 'pruebas')).to.be.deep.equal(false);
+      });
+    });
   });
 });
