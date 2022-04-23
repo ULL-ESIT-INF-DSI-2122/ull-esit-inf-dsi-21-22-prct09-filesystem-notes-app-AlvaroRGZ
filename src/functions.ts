@@ -184,10 +184,10 @@ export function getNoteAtributte(tittle: string, user: string, attr: string): st
           break;
       }
     } else {
-      console.log(chalk.redBright('Error. ${tittle} doesnt exist.'));
+      console.log(chalk.redBright(`Error. ${tittle} doesnt exist.`));
     }
   } else {
-    console.log(chalk.redBright('Error. ${user} directory not found.'));
+    console.log(chalk.redBright(`Error. ${user} directory not found.`));
   }
   if (out !== '') {
     return out;
