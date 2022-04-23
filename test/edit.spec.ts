@@ -25,9 +25,12 @@ describe('Pruebas Note App', () => {
       it('No funciona listNoteTitles con malos argumentos', () => {
         expect(fu.listNoteTitles('nodir')).to.be.deep.equal(false);
       });
+      it('No funciona listNotes con fichero con errores', () => {
+        expect(fu.listNoteTitles('pruebas')).to.be.deep.equal(false);
+      });
     });
 
-    describe('FUNCION: listNoteTitles', () => {
+    describe('FUNCION: listNotes', () => {
       it('Funciona listNotes', () => {
         expect(fu.listNotes('alvaro')).to.be.deep.equal(true);
       });
@@ -35,8 +38,11 @@ describe('Pruebas Note App', () => {
         expect(fu.listNotes('nodir')).to.be.deep.equal(false);
       });
       it('No funciona listNotes con fichero con errores', () => {
-        expect(fu.listNotes('nodir')).to.be.deep.equal(false);
+        expect(fu.listNotes('pruebas')).to.be.deep.equal(false);
       });
     });
+
+
+
   });
 });

@@ -84,7 +84,7 @@ export function deleteNote(tittle: string, user: string): boolean {
  * @param title titulo de la nota
 */
 export function readNote(tittle: string, user: string): boolean {
-  let exitStatus: boolean = false;
+  let exitStatus: boolean = true;
   if (fs.existsSync(userDir + user)) {
     if (fs.existsSync(userDir + user + '/' + tittle)) {
       if (getNoteAtributte(tittle, user, 'tittle') !== undefined && getNoteAtributte(tittle, user, 'color') !== undefined &&
@@ -93,19 +93,16 @@ export function readNote(tittle: string, user: string): boolean {
         print(getNoteAtributte(tittle, user, 'body') as string, getNoteAtributte(tittle, user, 'color') as string);
       } else {
         console.log(chalk.redBright(`Error. Accesing ${tittle} atributes.`));
+        exitStatus = false;
       }
-      /*
-      const data: string = fs.readFileSync(userDir + user + '/' + tittle).toString();
-      print(JSON.parse(data.toString()).tittle, JSON.parse(data.toString()).color);
-      print(JSON.parse(data.toString()).body, JSON.parse(data.toString()).color);
-      */
       console.log();
-      exitStatus = true;
     } else {
       console.log(chalk.redBright(`Error. ${tittle} does not exist.`));
+      exitStatus = false;
     }
   } else {
     console.log(chalk.redBright(`Error. ${userDir + user} directory not found.`));
+    exitStatus = false;
   }
   return exitStatus;
 }
