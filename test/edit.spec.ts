@@ -13,7 +13,8 @@ describe('Pruebas Note App', () => {
       it('No funciona getNoteAtributte con malos argumentos', () => {
         expect(fu.getNoteAtributte('pr1', 'pruebas', 'papas')).to.be.deep.equal(undefined);
         expect(fu.getNoteAtributte('pr1', 'nodir', 'papas')).to.be.deep.equal(undefined);
-        expect(fu.getNoteAtributte('nofile', 'pruebas', 'tittle')).to.be.deep.equal(undefined);expect(fu.getNoteAtributte('nofile', 'pruebas', 'body')).to.be.deep.equal(undefined);
+        expect(fu.getNoteAtributte('nofile', 'pruebas', 'tittle')).to.be.deep.equal(undefined);
+        expect(fu.getNoteAtributte('nofile', 'pruebas', 'body')).to.be.deep.equal(undefined);
       });
     });
 
