@@ -5,7 +5,7 @@ import chalk from 'chalk';
  * @param s cadena a imprimir por pantalla
  * @param c color deseado para imprimir s
  */
-export function print(s: string, c: string) {
+export function print(s: string, c?: string) {
   switch (c) {
     case 'blue':
       console.log(chalk.blueBright(s));
@@ -28,11 +28,13 @@ export function print(s: string, c: string) {
   }
 }
 
+
 /**
  * Funcion que imprime una cadena con un backGround determinado
  * @param s cadena a imprimir por pantalla
  * @param c color deseado para imprimir s
  */
+/*
 export function bgprint(s: string, c: string) {
   switch (c) {
     case 'blue':
@@ -52,3 +54,4 @@ export function bgprint(s: string, c: string) {
       break;
   }
 }
+*/

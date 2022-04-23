@@ -87,9 +87,18 @@ export function readNote(tittle: string, user: string): boolean {
   let exitStatus: boolean = false;
   if (fs.existsSync(userDir + user)) {
     if (fs.existsSync(userDir + user + '/' + tittle)) {
+      if (getNoteAtributte(tittle, user, 'tittle') !== undefined && getNoteAtributte(tittle, user, 'color') !== undefined &&
+          getNoteAtributte(tittle, user, 'body') !== undefined) {
+        print(getNoteAtributte(tittle, user, 'tittle') as string, getNoteAtributte(tittle, user, 'color') as string);
+        print(getNoteAtributte(tittle, user, 'body') as string, getNoteAtributte(tittle, user, 'color') as string);
+      } else {
+        console.log(chalk.redBright(`Error. Accesing ${tittle} atributes.`));
+      }
+      /*
       const data: string = fs.readFileSync(userDir + user + '/' + tittle).toString();
       print(JSON.parse(data.toString()).tittle, JSON.parse(data.toString()).color);
       print(JSON.parse(data.toString()).body, JSON.parse(data.toString()).color);
+      */
       console.log();
       exitStatus = true;
     } else {
@@ -130,23 +139,21 @@ export function listNotes(user: string): boolean {
  */
 export function listNoteTitles(user: string): boolean {
   let exitStatus: boolean = true;
-  fs.readdir(userDir + user, (err, files) => {
-    if (err) {
-      console.log(chalk.redBright(`Error reading from ${userDir}/${user} directory`));
-      exitStatus = false;
-    } else {
-      print(`User: ${user} has ${files.length} notes:\n`, 'white');
-      files.forEach((f) => {
-        // Si no ha habido ningun problema leyendo los atributos de f
-        if (getNoteAtributte(f, user, 'color') !== undefined) {
-          print(f, getNoteAtributte(f, user, 'color') as string);
-        } else {
-          print(`Error accesing ${f} attributes`, 'red');
-          exitStatus = false;
-        }
-      });
-    }
-  });
+  if (fs.existsSync(userDir + user)) {
+    const files: string[] = fs.readdirSync(userDir + user);
+    print(`User: ${user} has ${files.length} notes:\n`);
+    files.forEach((f) => {
+      if (getNoteAtributte(f, user, 'color') !== undefined) {
+        print(f, getNoteAtributte(f, user, 'color') as string);
+      } else {
+        print(`Error accesing ${f} attributes`, 'red');
+        exitStatus = false;
+      }
+    });
+  } else {
+    console.log(chalk.redBright(`Error. Directory ${userDir + user} does not exit.`));
+    exitStatus = false;
+  }
   return exitStatus;
 }
 
