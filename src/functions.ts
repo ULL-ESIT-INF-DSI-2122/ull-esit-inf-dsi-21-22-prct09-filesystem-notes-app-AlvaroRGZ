@@ -117,16 +117,18 @@ export function readNote(tittle: string, user: string): boolean {
  * @param user usuario dueño de las notas a listar.
  */
 export function listNotes(user: string): boolean {
-  let exitStatus: boolean = false;
+  let exitStatus: boolean = true;
   if (fs.existsSync(userDir + user)) {
     const files: string[] = fs.readdirSync(userDir + user);
-    exitStatus= true;
     print(`User: ${user} has ${files.length} notes:\n`, 'white');
     files.forEach((f) => {
-      readNote(f, user);
+      if (!readNote(f, user)) {
+        exitStatus = false;
+      }
     });
   } else {
     console.log(chalk.redBright(`Error. Directory ${userDir + user} does not exit.`));
+    exitStatus = false;
   }
   return exitStatus;
 }
