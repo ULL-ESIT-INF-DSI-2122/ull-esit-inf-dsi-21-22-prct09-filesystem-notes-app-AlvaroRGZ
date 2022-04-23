@@ -2,6 +2,9 @@ import * as yargs from 'yargs';
 import chalk from 'chalk';
 import * as fu from '../src/functions';
 
+const noteTittle: string = 'Note title';
+const userName: string = 'User name';
+
 /**
  * Funcion para implementar el comando add.
  * Añade una nota
@@ -15,12 +18,12 @@ yargs.command({
   describe: 'Add a new note',
   builder: {
     user: {
-      describe: 'User name',
+      describe: userName,
       demandOption: true,
       type: 'string',
     },
     title: {
-      describe: 'Note title',
+      describe: noteTittle,
       demandOption: true,
       type: 'string',
     },
@@ -59,17 +62,17 @@ yargs.command({
   describe: 'Modify a note',
   builder: {
     user: {
-      describe: 'User name',
+      describe: userName,
       demandOption: true,
       type: 'string',
     },
     title: {
-      describe: 'Note title',
+      describe: noteTittle,
       demandOption: true,
       type: 'string',
     },
     newtitle: {
-      describe: 'Note title',
+      describe: noteTittle,
       demandOption: true,
       type: 'string',
     },
@@ -106,12 +109,12 @@ yargs.command({
   describe: 'Read a note',
   builder: {
     user: {
-      describe: 'User name',
+      describe: userName,
       demandOption: true,
       type: 'string',
     },
     title: {
-      describe: 'Note title',
+      describe: noteTittle,
       demandOption: true,
       type: 'string',
     },
@@ -134,12 +137,12 @@ yargs.command({
   describe: 'Delete a note',
   builder: {
     user: {
-      describe: 'User name',
+      describe: userName,
       demandOption: true,
       type: 'string',
     },
     title: {
-      describe: 'Note title',
+      describe: noteTittle,
       demandOption: true,
       type: 'string',
     },
