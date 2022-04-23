@@ -47,11 +47,11 @@ describe('Pruebas Note App', () => {
       it('Funciona readNote', () => {
         expect(fu.readNote('pr1', 'pruebas')).to.be.deep.equal(true);
       });
-      it('No funciona listNotes con malos argumentos', () => {
+      it('No funciona readNote con malos argumentos', () => {
         expect(fu.readNote('nofile', 'pruebas')).to.be.deep.equal(false);
         expect(fu.readNote('nofile', 'nodir')).to.be.deep.equal(false);
       });
-      it('No funciona listNotes con fichero con errores', () => {
+      it('No funciona readNote con fichero con errores', () => {
         expect(fu.readNote('pr6', 'pruebas')).to.be.deep.equal(false);
       });
     });
@@ -61,7 +61,7 @@ describe('Pruebas Note App', () => {
         expect(fu.deleteNote('pr1', 'pruebas')).to.be.deep.equal(true);
         fu.createNote('pr1', 'Estos ficheros', 'pruebas', 'blue');
       });
-      it('No funciona listNotes con malos argumentos', () => {
+      it('No funciona deleteNote con malos argumentos', () => {
         expect(fu.deleteNote('nofile', 'pruebas')).to.be.deep.equal(false);
         expect(fu.deleteNote('pr1', 'nodir')).to.be.deep.equal(false);
       });
