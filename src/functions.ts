@@ -19,14 +19,19 @@ const userDir: string = 'userNotes/';
  */
 export function createNote(tittle: string, body: string, user: string, color: string): boolean {
   let exitStatus: boolean = false;
-  if (!fs.existsSync(userDir + user)) {
-    fs.mkdirSync(userDir + user, {recursive: true});
-  }
-  if (!fs.existsSync(userDir + user + '/' + tittle)) {
-    fs.writeFileSync(userDir + user + '/' + tittle, JSON.stringify({tittle, body, color}, null, ' '));
-    exitStatus = true;
+  if (tittle === '' || body === '' ||
+      user === '' || color === '' ) {
+    console.log(chalk.redBright(`Error. Wrong arguments.`));
   } else {
-    console.log(chalk.redBright(`Error. ${tittle} already exists`));
+    if (!fs.existsSync(userDir + user)) {
+      fs.mkdirSync(userDir + user, {recursive: true});
+    }
+    if (!fs.existsSync(userDir + user + '/' + tittle)) {
+      fs.writeFileSync(userDir + user + '/' + tittle, JSON.stringify({tittle, body, color}, null, ' '));
+      exitStatus = true;
+    } else {
+      console.log(chalk.redBright(`Error. ${tittle} already exists.`));
+    }
   }
   return exitStatus;
 }
