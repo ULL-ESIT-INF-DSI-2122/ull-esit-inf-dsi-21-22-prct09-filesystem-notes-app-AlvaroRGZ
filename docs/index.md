@@ -15,7 +15,8 @@
 ### Índice
 
 1. [Introducción](#e1)   
-2. [Código Fuente](#e2)
+2. [Ejemplo de ejecución](#e2)
+3. [Código Fuente](#e3)
 
 
 <a name="e1"></a>
@@ -50,6 +51,12 @@ conocimientos aprendidos en:
 * [El sistema de ficheros](https://ull-esit-inf-dsi-2122.github.io/nodejs-theory/nodejs-filesystem.html)
 
 <a name="e2"></a>
+
+
+## Ejemplo de ejecución
+![ejecucion](./images/ejec.png)
+
+<a name="e3"></a>
 
 
 ## Código fuente
